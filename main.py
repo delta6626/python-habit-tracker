@@ -1,18 +1,15 @@
 menu_options = {
-    "view_habits": 1,
+    "add_habit": 1,
     "complete_habit": 2,
-    "add_habit":3,
-    "delete_habit": 4,
-    "view_analytics": 5,
-    "repeat_menu": 6,
-    "exit": 7
-
+    "delete_habit": 3,
+    "view_analytics": 4,
+    "repeat_menu": 5,
+    "exit": 6
 }
 
 menu_options_text = f"""
-Press {menu_options['view_habits']} to view all created habits
-Press {menu_options['complete_habit']} to complete/check-off a habit
 Press {menu_options['add_habit']} to add a new habit
+Press {menu_options['complete_habit']} to complete/check-off a habit
 Press {menu_options['delete_habit']} to delete a habit
 Press {menu_options['view_analytics']} to view analytics
 Press {menu_options['repeat_menu']} to see the menu again
