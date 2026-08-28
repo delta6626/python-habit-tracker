@@ -1,3 +1,7 @@
+from HabitDatabase import HabitDatabase
+from Habit import Habit
+from datetime import datetime
+
 menu_options = {
     "add_habit": 1,
     "complete_habit": 2,
@@ -16,7 +20,33 @@ Press {menu_options['repeat_menu']} to see the menu again
 Press {menu_options['exit']} to exit
 """
 
-invalid_input_text = f"Invalid option. Enter a valid one or press {menu_options['repeat_menu']} to view all valid options."
+invalid_input_text = f"""
+Invalid option. Enter a valid one or press {menu_options['repeat_menu']} to view all valid options.
+"""
+
+database = HabitDatabase()
+
+def add_new_habit():
+    habit_name = input("Enter a name for your new habit: ")
+
+    if habit_name.strip() == "":
+        print("Habit name cannot be empty.")
+        return
+
+    habit_description = input("Enter a description for your new habit (optional): ")
+
+    habit_periodicity = input("Enter the desired periodicity for your habit (daily/weekly): ").strip().lower()
+
+    if habit_periodicity == "":
+        print("Periodicity cannot be empty.")
+        return
+
+    if habit_periodicity not in ("daily", "weekly"):
+        print("Invalid periodicity.")
+        return
+
+    new_habit = Habit(habit_name, habit_description, habit_periodicity, datetime.now(), [])
+    database.add_habit(new_habit)    
 
 def main():
     """
@@ -29,11 +59,10 @@ def main():
     while(True):
         try:
             chosen_option = int(input("Please enter your preferred option: "))
-            if chosen_option == menu_options["view_habits"]:
-                pass
+
+            if chosen_option == menu_options["add_habit"]:
+                add_new_habit()
             elif chosen_option == menu_options["complete_habit"]:
-                pass
-            elif chosen_option == menu_options["add_habit"]:
                 pass
             elif chosen_option == menu_options["delete_habit"]:
                 pass
