@@ -26,7 +26,7 @@ class HabitManager:
     def check_off_habit(self):
         self.view_all_habits()
 
-        sorted_habits = sorted(self.habit_list, key = lambda habit: habit.created_at, reverse = True)
+        sorted_habits = sorted(self.habit_list, key = lambda habit: habit.created_at)
         habit_identifier = get_habit_number_input(1, len(sorted_habits))
 
         chosen_habit = sorted_habits[habit_identifier - 1]
