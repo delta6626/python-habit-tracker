@@ -9,7 +9,7 @@ class HabitManager:
         self.database = HabitDatabase()
         self.habit_list = self.database.get_all_habits();
 
-    def add_new_habit(self):
+    def add_new_habit(self) -> None:
         habit_name = get_non_empty_input("Habit name", "Enter a name for your new habit: ")
         habit_description = input("Enter a description for your new habit (optional): ").strip()
         habit_periodicity = get_periodicity_input("Enter the desired periodicity for your habit (daily/weekly): ")
@@ -19,11 +19,11 @@ class HabitManager:
         self.habit_list.append(new_habit)
         print("New habit added successfully.\n")
 
-    def view_all_habits(self):
+    def view_all_habits(self) -> None:
         print("\nHere is a list of all your habits (latest first): ")
         print(f"{analytics.view_all_habits(self.habit_list)}\n")
 
-    def check_off_habit(self):
+    def check_off_habit(self) -> None:
         self.view_all_habits()
 
         sorted_habits = sorted(self.habit_list, key = lambda habit: habit.created_at)

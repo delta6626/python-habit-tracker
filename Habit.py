@@ -11,9 +11,9 @@ class Habit:
         self.created_at = created_at
         self.completions = completions
 
-    def check_off_habit(self, check_off_datetime:datetime)->None:
+    def check_off_habit(self, check_off_datetime:datetime) -> None:
         self.completions.append(check_off_datetime)
 
-    def get_elapsed_periods(self, datetime_of_check:datetime)->int:
+    def get_elapsed_periods(self, datetime_of_check:datetime) -> int:
          elapsed_days_since_creation = (datetime_of_check - self.created_at).days
          return elapsed_days_since_creation // PERIODICITY_DAY_COUNT[self.periodicity]
