@@ -16,8 +16,32 @@ class HabitDatabase:
         self.connection.commit()
 
     def get_all_habits(self):
-        self.cursor.execute(constants.GET_ALL_HABITS_SQL);
-        return self.cursor.fetchall();
+        self.cursor.execute(constants.GET_ALL_HABITS_SQL)
+        habits = self.cursor.fetchall()
+        habit_objects = []
+
+        for habit in habits:
+            habit_id, name, description, periodicity, created_at = habit
+            self.cursor.execute(constants.GET_COMPLETIONS_SQL, (habit_id,))
+            completion_rows = self.cursor.fetchall()
+
+            completions = []
+            for row in completion_rows:
+                completion = datetime.fromisoformat(row[0])
+                completions.append(completion)
+
+            existing_habit = Habit(
+                habit_id,
+                name,
+                description,
+                periodicity,
+                datetime.fromisoformat(created_at),
+                completions
+            )
+
+            habit_objects.append(existing_habit)
+            
+        return habit_objects
 
     def add_habit(self, habit: Habit)->None:
         self.cursor.execute(constants.INSERT_HABIT_SQL, (habit.id, habit.name, habit.description, habit.periodicity, habit.created_at.isoformat()))
