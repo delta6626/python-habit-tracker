@@ -13,7 +13,7 @@ def main():
 
     while(True):
         try:
-            chosen_option = int(input("Please enter your preferred option: "))
+            chosen_option = int(input("What action would you like to perform?: "))
 
             if chosen_option == constants.MENU_OPTIONS["add_habit"]:
                 habit_manager.add_new_habit()
