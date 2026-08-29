@@ -18,7 +18,7 @@ def main():
             if chosen_option == constants.MENU_OPTIONS["add_habit"]:
                 habit_manager.add_new_habit()
             elif chosen_option == constants.MENU_OPTIONS["complete_habit"]:
-                pass
+                habit_manager.check_off_habit()
             elif chosen_option == constants.MENU_OPTIONS["delete_habit"]:
                 pass
             elif chosen_option == constants.MENU_OPTIONS["view_analytics"]:

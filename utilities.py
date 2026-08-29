@@ -17,3 +17,15 @@ def get_periodicity_input(prompt: str) -> Periodicity:
             return input_value
 
         print("Invalid periodicity. Please enter daily or weekly.")
+
+def get_habit_number_input(min_allowed: int, max_allowed:int) -> int:
+    while True:
+        try:
+            input_value = int(input("Enter the identifier of the habit you would like to check off: "))
+
+            if min_allowed <= input_value <= max_allowed:
+                return input_value
+            
+            print("Invalid identifier. Please enter a valid identifier.")
+        except ValueError:
+            print("Habit identifier should be a number.")
