@@ -15,7 +15,7 @@ class HabitDatabase:
 
         self.connection.commit()
 
-    def get_all_habits(self):
+    def get_all_habits(self) -> list[Habit]:
         self.cursor.execute(constants.GET_ALL_HABITS_SQL)
         habits = self.cursor.fetchall()
         habit_objects = []
@@ -47,8 +47,8 @@ class HabitDatabase:
         self.cursor.execute(constants.INSERT_HABIT_SQL, (habit.id, habit.name, habit.description, habit.periodicity, habit.created_at.isoformat()))
         self.connection.commit()
 
-    def check_off_habit(self, habit_id:str):
-        self.cursor.execute(constants.CHECK_OFF_HABIT_SQL, (habit_id, datetime.now().isoformat()))
+    def check_off_habit(self, habit_id:str, check_off_datetime:datetime):
+        self.cursor.execute(constants.CHECK_OFF_HABIT_SQL, (habit_id, check_off_datetime.isoformat()))
         self.connection.commit()
 
     def delete_habit(self, habit_id:str):
