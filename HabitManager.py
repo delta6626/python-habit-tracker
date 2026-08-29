@@ -16,6 +16,7 @@ class HabitManager:
 
         new_habit = Habit(habit_name, habit_description, habit_periodicity, datetime.now(), [])
         self.database.add_habit(new_habit)
+        print("New habit added successfully.\n")
 
     def view_all_habits(self):
         return analytics.view_all_habits(self.database.get_all_habits())
