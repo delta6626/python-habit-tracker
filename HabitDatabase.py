@@ -22,7 +22,7 @@ class HabitDatabase:
 
         for habit in habits:
             habit_id, name, description, periodicity, created_at = habit
-            self.cursor.execute(constants.GET_COMPLETIONS_SQL, (habit_id,))
+            self.cursor.execute(constants.GET_HABIT_COMPLETIONS_SQL, (habit_id,))
             completion_rows = self.cursor.fetchall()
 
             completions = []
@@ -40,7 +40,7 @@ class HabitDatabase:
             )
 
             habit_objects.append(existing_habit)
-            
+
         return habit_objects
 
     def add_habit(self, habit: Habit)->None:
