@@ -20,7 +20,7 @@ def main():
             elif chosen_option == constants.MENU_OPTIONS["complete_habit"]:
                 habit_manager.check_off_habit()
             elif chosen_option == constants.MENU_OPTIONS["delete_habit"]:
-                pass
+                habit_manager.delete_habit()
             elif chosen_option == constants.MENU_OPTIONS["view_analytics"]:
                 pass
             elif chosen_option == constants.MENU_OPTIONS["repeat_menu"]:

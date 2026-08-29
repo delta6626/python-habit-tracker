@@ -27,7 +27,7 @@ class HabitManager:
         self.view_all_habits()
 
         sorted_habits = sorted(self.habit_list, key = lambda habit: habit.created_at)
-        habit_identifier = get_habit_number_input(1, len(sorted_habits))
+        habit_identifier = get_habit_number_input("Enter the identifier of the habit you would like to check off: ", 1, len(sorted_habits))
 
         chosen_habit = sorted_habits[habit_identifier - 1]
         current_time = datetime.now()
@@ -35,3 +35,15 @@ class HabitManager:
         chosen_habit.check_off_habit(current_time)
 
         print(f"Habit #{habit_identifier} - '{chosen_habit.name}' was checked off at {current_time.isoformat()}.\n")
+
+    def delete_habit(self) -> None:
+        self.view_all_habits()
+        
+        sorted_habits = sorted(self.habit_list, key = lambda habit: habit.created_at)
+        habit_identifier = get_habit_number_input("Enter the identifier of the habit you would like to delete: ", 1, len(sorted_habits))
+
+        chosen_habit = sorted_habits[habit_identifier - 1]
+        self.database.delete_habit(chosen_habit.id)
+        self.habit_list.remove(chosen_habit)
+
+        print(f"Habit #{habit_identifier} - '{chosen_habit.name}' was deleted successfully.\n")
