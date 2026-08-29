@@ -2,7 +2,7 @@ from HabitDatabase import HabitDatabase
 from datetime import datetime
 from Habit import Habit
 from utilities import get_non_empty_input, get_periodicity_input
-
+import analytics
 
 class HabitManager:
     def __init__(self):
@@ -18,3 +18,7 @@ class HabitManager:
         self.database.add_habit(new_habit)
         self.habit_list.append(new_habit)
         print("New habit added successfully.\n")
+
+    def view_all_habits(self):
+        print("\nHere is a list of all your habits (latest first): ")
+        print(f"{analytics.view_all_habits(self.habit_list)}\n")
