@@ -36,7 +36,7 @@ class HabitDatabase:
                 description,
                 periodicity,
                 datetime.fromisoformat(created_at),
-                completions
+                completions,
             )
 
             habit_objects.append(existing_habit)
@@ -44,13 +44,24 @@ class HabitDatabase:
         return habit_objects
 
     def add_habit(self, habit: Habit) -> None:
-        self.cursor.execute(constants.INSERT_HABIT_SQL, (habit.id, habit.name, habit.description, habit.periodicity, habit.created_at.isoformat()))
+        self.cursor.execute(
+            constants.INSERT_HABIT_SQL,
+            (
+                habit.id,
+                habit.name,
+                habit.description,
+                habit.periodicity,
+                habit.created_at.isoformat(),
+            ),
+        )
         self.connection.commit()
 
-    def check_off_habit(self, habit_id:str, check_off_datetime:datetime) -> None:
-        self.cursor.execute(constants.CHECK_OFF_HABIT_SQL, (habit_id, check_off_datetime.isoformat()))
+    def check_off_habit(self, habit_id: str, check_off_datetime: datetime) -> None:
+        self.cursor.execute(
+            constants.CHECK_OFF_HABIT_SQL, (habit_id, check_off_datetime.isoformat())
+        )
         self.connection.commit()
 
-    def delete_habit(self, habit_id:str) -> None:
+    def delete_habit(self, habit_id: str) -> None:
         self.cursor.execute(constants.DELETE_HABIT_SQL, (habit_id,))
         self.connection.commit()

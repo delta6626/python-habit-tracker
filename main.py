@@ -4,6 +4,7 @@ import constants
 
 habit_manager = HabitManager()
 
+
 def main():
     """
     The main function serves as the entrypoint to the application.
@@ -12,10 +13,16 @@ def main():
     print("Welcome to the habit tracker application")
     print(constants.MENU_OPTIONS_TEXT)
 
-    while(True):
-    
-        chosen_option = get_input_within_range("What action would you like to perform?: ", 1, len(constants.MENU_OPTIONS), constants.INVALID_INPUT_TEXT, constants.VALUE_ERROR_MESSAGE)
-    
+    while True:
+
+        chosen_option = get_input_within_range(
+            "What action would you like to perform?: ",
+            1,
+            len(constants.MENU_OPTIONS),
+            constants.INVALID_INPUT_TEXT,
+            constants.VALUE_ERROR_MESSAGE,
+        )
+
         if chosen_option == constants.MENU_OPTIONS["add_habit"]:
             habit_manager.initiate_add_new_habit()
         elif chosen_option == constants.MENU_OPTIONS["complete_habit"]:

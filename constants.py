@@ -8,7 +8,7 @@ MENU_OPTIONS = {
     "delete_habit": 3,
     "view_analytics": 4,
     "repeat_menu": 5,
-    "exit": 6
+    "exit": 6,
 }
 
 MENU_OPTIONS_TEXT = f"""
@@ -56,17 +56,14 @@ Invalid input. Please enter a number.
 
 
 Periodicity = Literal["daily", "weekly"]
-PERIODICITY_DAY_COUNT:dict[Periodicity, int] = {
-    "daily": 1,
-    "weekly":7
-}
+PERIODICITY_DAY_COUNT: dict[Periodicity, int] = {"daily": 1, "weekly": 7}
 
 ################# DATABASE #################
 
 MAIN_TABLE_NAME = "habits"
 COMPLETIONS_TABLE_NAME = "completions"
 
-GET_ALL_HABITS_SQL= f"""
+GET_ALL_HABITS_SQL = f"""
 SELECT * FROM {MAIN_TABLE_NAME}
 """
 
