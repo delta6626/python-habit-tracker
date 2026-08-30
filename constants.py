@@ -38,9 +38,13 @@ INVALID_INPUT_TEXT = f"""
 Invalid option. Enter a valid one or press {MENU_OPTIONS['repeat_menu']} to view all valid options.
 """
 
-INVALID_HABIT_IDENTIFIER = "Invalid identifier. Please enter a valid habit identifier."
+INVALID_HABIT_IDENTIFIER = """
+Invalid identifier. Please enter a valid habit identifier.
+"""
 
-VALUE_ERROR_MESSAGE = "Invalid input. Please enter a number."
+VALUE_ERROR_MESSAGE = """
+Invalid input. Please enter a number.
+"""
 
 Periodicity = Literal["daily", "weekly"]
 PERIODICITY_DAY_COUNT:dict[Periodicity, int] = {
