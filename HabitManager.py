@@ -57,4 +57,4 @@ class HabitManager:
     def initiate_view_analytics(self) -> None:
         print("\nAvailable analytics: ")
         print(constants.ANALYTICS_OPTIONS_TEXT)
-        chosen_option = get_input_within_range("Which one would you like to see?: ", 1, len(constants.ANALYTICS_OPTIONS), constants.INVALID_ANALYTICS_IDENTIFIER, constants.VALUE_ERROR_MESSAGE)
+        chosen_option = get_input_within_range("Which one would you like to see?: ", 1, len(constants.ANALYTICS_OPTIONS), constants.INVALID_ANALYTICS_OPTION, constants.VALUE_ERROR_MESSAGE)
