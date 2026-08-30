@@ -1,13 +1,18 @@
 from HabitDatabase import HabitDatabase
 from datetime import datetime
 from Habit import Habit
-from utilities import get_non_empty_input, get_periodicity_input, get_habit_number_input
+from utilities import get_non_empty_input, get_periodicity_input, get_input_within_range
 import analytics
+import constants
 
 class HabitManager:
     def __init__(self):
         self.database = HabitDatabase()
         self.habit_list = self.database.get_all_habits();
+
+    def sort_habits_latest_first(self) -> list[Habit]:
+        sorted_habits = sorted(self.habit_list, key = lambda habit: habit.created_at, reverse = True)
+        return sorted_habits
 
     def initiate_add_new_habit(self) -> None:
         habit_name = get_non_empty_input("Habit name", "Enter a name for your new habit: ")
@@ -20,14 +25,15 @@ class HabitManager:
         print("New habit added successfully.\n")
 
     def initiate_view_all_habits(self) -> None:
+        sorted_habits = self.sort_habits_latest_first()
         print("\nHere is a list of all your habits (latest first): ")
-        print(f"{analytics.view_all_habits(self.habit_list)}\n")
+        print(f"{analytics.view_all_habits(sorted_habits)}\n")
 
     def initiate_check_off_habit(self) -> None:
         self.initiate_view_all_habits()
 
-        sorted_habits = sorted(self.habit_list, key = lambda habit: habit.created_at)
-        habit_identifier = get_habit_number_input("Enter the identifier of the habit you would like to check off: ", 1, len(sorted_habits))
+        sorted_habits = self.sort_habits_latest_first()
+        habit_identifier = get_input_within_range("Enter the identifier of the habit you would like to check off: ", 1, len(sorted_habits), constants.INVALID_HABIT_IDENTIFIER, constants.VALUE_ERROR_MESSAGE)
 
         chosen_habit = sorted_habits[habit_identifier - 1]
         current_time = datetime.now()
@@ -39,8 +45,8 @@ class HabitManager:
     def initiate_delete_habit(self) -> None:
         self.initiate_view_all_habits()
         
-        sorted_habits = sorted(self.habit_list, key = lambda habit: habit.created_at)
-        habit_identifier = get_habit_number_input("Enter the identifier of the habit you would like to delete: ", 1, len(sorted_habits))
+        sorted_habits = self.sort_habits_latest_first()
+        habit_identifier = get_input_within_range("Enter the identifier of the habit you would like to delete: ", 1, len(sorted_habits), constants.INVALID_HABIT_IDENTIFIER, constants.VALUE_ERROR_MESSAGE)
 
         chosen_habit = sorted_habits[habit_identifier - 1]
         self.database.delete_habit(chosen_habit.id)
