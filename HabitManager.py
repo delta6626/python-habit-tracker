@@ -55,4 +55,6 @@ class HabitManager:
         print(f"Habit #{habit_identifier} - '{chosen_habit.name}' was deleted successfully.\n")
 
     def initiate_view_analytics(self) -> None:
-        pass
+        print("\nAvailable analytics: ")
+        print(constants.ANALYTICS_OPTIONS_TEXT)
+        chosen_option = get_input_within_range("Which one would you like to see?: ", 1, len(constants.ANALYTICS_OPTIONS), constants.INVALID_ANALYTICS_IDENTIFIER, constants.VALUE_ERROR_MESSAGE)

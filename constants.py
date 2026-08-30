@@ -42,6 +42,10 @@ INVALID_HABIT_IDENTIFIER = """
 Invalid identifier. Please enter a valid habit identifier.
 """
 
+INVALID_ANALYTICS_IDENTIFIER = """
+Invalid identifier. Please choose one from the available analytics.
+"""
+
 VALUE_ERROR_MESSAGE = """
 Invalid input. Please enter a number.
 """
