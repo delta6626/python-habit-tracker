@@ -22,7 +22,7 @@ def main():
             elif chosen_option == constants.MENU_OPTIONS["delete_habit"]:
                 habit_manager.initiate_delete_habit()
             elif chosen_option == constants.MENU_OPTIONS["view_analytics"]:
-                pass
+                habit_manager.initiate_view_analytics()
             elif chosen_option == constants.MENU_OPTIONS["repeat_menu"]:
                 print(constants.MENU_OPTIONS_TEXT)
             elif chosen_option == constants.MENU_OPTIONS["exit"]:

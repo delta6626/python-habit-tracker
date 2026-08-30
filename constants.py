@@ -18,6 +18,22 @@ Press {MENU_OPTIONS['repeat_menu']} to see the menu again
 Press {MENU_OPTIONS['exit']} to exit
 """
 
+ANALYTICS_OPTIONS = {
+    "get_all_habits": 1,
+    "get_habit_details": 2,
+    "get_all_habits_with_same_periodicty": 3,
+    "get_longest_streak_overall": 4,
+    "get_longest_streak_for_habit": 5,
+}
+
+ANALYTICS_OPTIONS_TEXT = f"""
+Press {ANALYTICS_OPTIONS['get_all_habits']} to view all habits
+Press {ANALYTICS_OPTIONS['get_habit_details']} to view a habit in detail
+Press {ANALYTICS_OPTIONS['get_all_habits_with_same_periodicty']} to view all habits with the same periodicity
+Press {ANALYTICS_OPTIONS['get_longest_streak_overall']} to view the longest streak overall
+Press {ANALYTICS_OPTIONS['get_longest_streak_for_habit']} to view the longest streak for a specific habit
+"""
+
 INVALID_INPUT_TEXT = f"""
 Invalid option. Enter a valid one or press {MENU_OPTIONS['repeat_menu']} to view all valid options.
 """

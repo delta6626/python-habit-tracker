@@ -47,3 +47,6 @@ class HabitManager:
         self.habit_list.remove(chosen_habit)
 
         print(f"Habit #{habit_identifier} - '{chosen_habit.name}' was deleted successfully.\n")
+
+    def initiate_view_analytics(self) -> None:
+        pass
