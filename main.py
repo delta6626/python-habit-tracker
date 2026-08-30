@@ -16,11 +16,11 @@ def main():
             chosen_option = int(input("What action would you like to perform?: "))
 
             if chosen_option == constants.MENU_OPTIONS["add_habit"]:
-                habit_manager.add_new_habit()
+                habit_manager.initiate_add_new_habit()
             elif chosen_option == constants.MENU_OPTIONS["complete_habit"]:
-                habit_manager.check_off_habit()
+                habit_manager.initiate_check_off_habit()
             elif chosen_option == constants.MENU_OPTIONS["delete_habit"]:
-                habit_manager.delete_habit()
+                habit_manager.initiate_delete_habit()
             elif chosen_option == constants.MENU_OPTIONS["view_analytics"]:
                 pass
             elif chosen_option == constants.MENU_OPTIONS["repeat_menu"]:
