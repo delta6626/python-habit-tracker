@@ -20,7 +20,7 @@ class HabitManager:
     def initiate_view_all_habits(self) -> None:
         sorted_habits = self.sort_habits_latest_first()
         print("\nHere is a list of all your habits (latest first): ")
-        print(f"{analytics.view_all_habits(sorted_habits)}\n")
+        print(f"{analytics.get_all_habits(sorted_habits)}\n")
 
     def initiate_view_habit_details(self) -> None:
         self.initiate_view_all_habits()
