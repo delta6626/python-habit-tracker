@@ -33,7 +33,11 @@ def group_habits_based_on_periodicity(habit_list: list[Habit]) -> str:
         (
             f"{periodicity.capitalize()} habits:\n"
             + "\n".join(
-                habit.name for habit in habit_list if habit.periodicity == periodicity
+                f"{index}. {habit.name}"
+                for index, habit in enumerate(
+                    (habit for habit in habit_list if habit.periodicity == periodicity),
+                    start=1,
+                )
             )
         )
         for periodicity in periodicities
