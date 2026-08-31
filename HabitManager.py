@@ -17,6 +17,11 @@ class HabitManager:
         )
         return sorted_habits
 
+    def initiate_view_all_habits(self) -> None:
+        sorted_habits = self.sort_habits_latest_first()
+        print("\nHere is a list of all your habits (latest first): ")
+        print(f"{analytics.view_all_habits(sorted_habits)}\n")
+
     def initiate_add_new_habit(self) -> None:
         habit_name = get_non_empty_input(
             "Habit name", "Enter a name for your new habit: "
@@ -34,11 +39,6 @@ class HabitManager:
         self.database.add_habit(new_habit)
         self.habit_list.append(new_habit)
         print("New habit added successfully.\n")
-
-    def initiate_view_all_habits(self) -> None:
-        sorted_habits = self.sort_habits_latest_first()
-        print("\nHere is a list of all your habits (latest first): ")
-        print(f"{analytics.view_all_habits(sorted_habits)}\n")
 
     def initiate_check_off_habit(self) -> None:
         self.initiate_view_all_habits()
@@ -84,6 +84,7 @@ class HabitManager:
     def initiate_view_analytics(self) -> None:
         print("\nAvailable analytics: ")
         print(constants.ANALYTICS_OPTIONS_TEXT)
+
         chosen_option = get_input_within_range(
             "Which one would you like to see?: ",
             1,
@@ -91,3 +92,19 @@ class HabitManager:
             constants.INVALID_ANALYTICS_OPTION,
             constants.VALUE_ERROR_MESSAGE,
         )
+
+        if chosen_option == constants.ANALYTICS_OPTIONS["get_all_habits"]:
+            self.initiate_view_all_habits()
+        elif chosen_option == constants.ANALYTICS_OPTIONS["get_habit_details"]:
+            pass
+        elif (
+            chosen_option
+            == constants.ANALYTICS_OPTIONS["get_all_habits_with_same_periodicity"]
+        ):
+            pass
+        elif chosen_option == constants.ANALYTICS_OPTIONS["get_longest_streak_overall"]:
+            pass
+        elif (
+            chosen_option == constants.ANALYTICS_OPTIONS["get_longest_streak_for_habit"]
+        ):
+            pass
