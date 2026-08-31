@@ -43,7 +43,7 @@ class HabitManager:
 
     def initiate_add_new_habit(self) -> None:
         habit_name = get_non_empty_input(
-            "Habit name", "Enter a name for your new habit: "
+            "Habit name", "\nEnter a name for your new habit: "
         )
         habit_description = input(
             "Enter a description for your new habit (optional): "
