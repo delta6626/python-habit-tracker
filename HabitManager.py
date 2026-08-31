@@ -22,6 +22,21 @@ class HabitManager:
         print("\nHere is a list of all your habits (latest first): ")
         print(f"{analytics.view_all_habits(sorted_habits)}\n")
 
+    def initiate_view_habit_details(self) -> None:
+        self.initiate_view_all_habits()
+        sorted_habits = self.sort_habits_latest_first()
+        habit_identifier = get_input_within_range(
+            "Which habit would you like to learn more about?: ",
+            1,
+            len(sorted_habits),
+            constants.INVALID_HABIT_IDENTIFIER,
+            constants.VALUE_ERROR_MESSAGE,
+        )
+
+        chosen_habit = sorted_habits[habit_identifier - 1]
+        print("Here are the details for your selected habit:")
+        analytics.get_habit_details(chosen_habit)
+
     def initiate_add_new_habit(self) -> None:
         habit_name = get_non_empty_input(
             "Habit name", "Enter a name for your new habit: "
