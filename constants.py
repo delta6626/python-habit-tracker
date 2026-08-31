@@ -54,7 +54,6 @@ Invalid input. Please enter a number.
 
 ################# TYPE DEFINITIONS #################
 
-
 Periodicity = Literal["daily", "weekly"]
 PERIODICITY_DAY_COUNT: dict[Periodicity, int] = {"daily": 1, "weekly": 7}
 
