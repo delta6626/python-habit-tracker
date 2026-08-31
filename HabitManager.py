@@ -34,8 +34,8 @@ class HabitManager:
         )
 
         chosen_habit = sorted_habits[habit_identifier - 1]
-        print("Here are the details for your selected habit:")
-        analytics.get_habit_details(chosen_habit)
+        print("\nHere are the details for your selected habit:\n")
+        print(f"{analytics.get_habit_details(chosen_habit)}\n")
 
     def initiate_add_new_habit(self) -> None:
         habit_name = get_non_empty_input(
@@ -111,7 +111,7 @@ class HabitManager:
         if chosen_option == constants.ANALYTICS_OPTIONS["get_all_habits"]:
             self.initiate_view_all_habits()
         elif chosen_option == constants.ANALYTICS_OPTIONS["get_habit_details"]:
-            pass
+            self.initiate_view_habit_details()
         elif (
             chosen_option
             == constants.ANALYTICS_OPTIONS["get_all_habits_with_same_periodicity"]
