@@ -24,3 +24,17 @@ def get_habit_details(habit: Habit) -> str:
             completion_times,
         ]
     )
+
+
+def group_habits_based_on_periodicity(habit_list: list[Habit]) -> str:
+    periodicities = ("daily", "weekly")
+
+    return "\n\n".join(
+        (
+            f"{periodicity.capitalize()} habits:\n"
+            + "\n".join(
+                habit.name for habit in habit_list if habit.periodicity == periodicity
+            )
+        )
+        for periodicity in periodicities
+    )

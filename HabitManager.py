@@ -37,6 +37,10 @@ class HabitManager:
         print("\nHere are the details for your selected habit:\n")
         print(f"{analytics.get_habit_details(chosen_habit)}\n")
 
+    def initiate_view_habits_with_same_periodicity(self):
+        print("\nHere are your habits grouped by periodicity:\n")
+        print(f"{analytics.group_habits_based_on_periodicity(self.habit_list)}\n")
+
     def initiate_add_new_habit(self) -> None:
         habit_name = get_non_empty_input(
             "Habit name", "Enter a name for your new habit: "
@@ -116,7 +120,7 @@ class HabitManager:
             chosen_option
             == constants.ANALYTICS_OPTIONS["get_all_habits_with_same_periodicity"]
         ):
-            pass
+            self.initiate_view_habits_with_same_periodicity()
         elif chosen_option == constants.ANALYTICS_OPTIONS["get_longest_streak_overall"]:
             pass
         elif (
