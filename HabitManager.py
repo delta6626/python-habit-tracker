@@ -26,7 +26,7 @@ class HabitManager:
         self.initiate_view_all_habits()
         sorted_habits = self.sort_habits_latest_first()
         habit_identifier = get_input_within_range(
-            "Which habit would you like to learn more about?: ",
+            "[HABIT SELECTION] - Which habit would you like to learn more about?: ",
             1,
             len(sorted_habits),
             constants.INVALID_HABIT_IDENTIFIER,
@@ -64,7 +64,7 @@ class HabitManager:
 
         sorted_habits = self.sort_habits_latest_first()
         habit_identifier = get_input_within_range(
-            "Enter the identifier of the habit you would like to check off: ",
+            "[HABIT SELECTION] - Enter the identifier of the habit you would like to check off: ",
             1,
             len(sorted_habits),
             constants.INVALID_HABIT_IDENTIFIER,
@@ -85,7 +85,7 @@ class HabitManager:
 
         sorted_habits = self.sort_habits_latest_first()
         habit_identifier = get_input_within_range(
-            "Enter the identifier of the habit you would like to delete: ",
+            "[HABIT SELECTION] - Enter the identifier of the habit you would like to delete: ",
             1,
             len(sorted_habits),
             constants.INVALID_HABIT_IDENTIFIER,
@@ -105,7 +105,7 @@ class HabitManager:
         print(constants.ANALYTICS_OPTIONS_TEXT)
 
         chosen_option = get_input_within_range(
-            "Which one would you like to see?: ",
+            "[ANALYTICS MENU] - Which one would you like to see?: ",
             1,
             len(constants.ANALYTICS_OPTIONS),
             constants.INVALID_ANALYTICS_OPTION,

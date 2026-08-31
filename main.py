@@ -16,7 +16,7 @@ def main():
     while True:
 
         chosen_option = get_input_within_range(
-            "What action would you like to perform?: ",
+            "[MAIN MENU] - What action would you like to perform?: ",
             1,
             len(constants.MENU_OPTIONS),
             constants.INVALID_INPUT_TEXT,
