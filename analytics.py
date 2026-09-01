@@ -47,7 +47,7 @@ def group_habits_based_on_periodicity(habit_list: list[Habit]) -> str:
 
 
 def get_longest_streak_for_habit(habit: Habit):
-    periods = habit.get_periods_since_creation()
+    periods = habit.get_periods_since_creation(datetime.now())
 
     completions_list = [
         int(
