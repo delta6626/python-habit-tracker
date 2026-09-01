@@ -41,9 +41,26 @@ class HabitManager:
         print("\nHere are your habits grouped by periodicity:\n")
         print(f"{analytics.group_habits_based_on_periodicity(self.habit_list)}\n")
 
-    def initiate_view_longest_streak(self):
-        print("\nHere is the habit with the longest streak:\n")
-        print(f"{analytics.get_longest_streak(self.habit_list)}\n")
+    def initiate_view_longest_streak_for_habit(self):
+        self.initiate_view_all_habits()
+        sorted_habits = self.sort_habits_latest_first()
+        habit_identifier = get_input_within_range(
+            "[HABIT SELECTION] - Select a habit to check its longest streak: ",
+            1,
+            len(sorted_habits),
+            constants.INVALID_HABIT_IDENTIFIER,
+            constants.VALUE_ERROR_MESSAGE,
+        )
+
+        chosen_habit = sorted_habits[habit_identifier - 1]
+        print(
+            f"\nThe longest streak for '{chosen_habit.name}' is {analytics.get_longest_streak_for_habit(chosen_habit)}.\n"
+        )
+
+    def initiate_view_longest_streak_overall(self):
+        habit, streak = analytics.get_longest_streak_overall(self.habit_list)
+        print(f"\nThe habit '{habit.name}' has the longest streak.\n")
+        print(f"It has lasted for {streak} periods.\n")
 
     def initiate_add_new_habit(self) -> None:
         habit_name = get_non_empty_input(
@@ -125,9 +142,9 @@ class HabitManager:
             == constants.ANALYTICS_OPTIONS["get_all_habits_with_same_periodicity"]
         ):
             self.initiate_view_habits_with_same_periodicity()
-        elif chosen_option == constants.ANALYTICS_OPTIONS["get_longest_streak_overall"]:
-            self.initiate_view_longest_streak()
         elif (
             chosen_option == constants.ANALYTICS_OPTIONS["get_longest_streak_for_habit"]
         ):
-            pass
+            self.initiate_view_longest_streak_for_habit()
+        elif chosen_option == constants.ANALYTICS_OPTIONS["get_longest_streak_overall"]:
+            self.initiate_view_longest_streak_overall()

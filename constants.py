@@ -24,8 +24,8 @@ ANALYTICS_OPTIONS = {
     "get_all_habits": 1,
     "get_habit_details": 2,
     "get_all_habits_with_same_periodicity": 3,
-    "get_longest_streak_overall": 4,
-    "get_longest_streak_for_habit": 5,
+    "get_longest_streak_for_habit": 4,
+    "get_longest_streak_overall": 5,
 }
 
 ANALYTICS_OPTIONS_TEXT = f"""

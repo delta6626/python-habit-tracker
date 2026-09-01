@@ -78,7 +78,7 @@ def get_longest_streak_for_habit(habit: Habit):
     )
 
 
-def get_longest_streak_overall(habit_list: list[Habit]):
+def get_longest_streak_overall(habit_list: list[Habit]) -> tuple[Habit, int]:
     return max(
         ((habit, get_longest_streak_for_habit(habit)) for habit in habit_list),
         key=lambda item: item[1],
