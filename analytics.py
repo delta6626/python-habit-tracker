@@ -42,3 +42,7 @@ def group_habits_based_on_periodicity(habit_list: list[Habit]) -> str:
         )
         for periodicity in periodicities
     )
+
+
+def get_longest_streak(habit_list: list[Habit]) -> str:
+    pass
