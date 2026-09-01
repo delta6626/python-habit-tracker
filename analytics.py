@@ -76,3 +76,7 @@ def get_longest_streak_for_habit(habit: Habit):
         ),
         default=0,
     )
+
+
+def get_longest_streak_overall(habit_list: list[Habit]):
+    return max((get_longest_streak_for_habit(habit) for habit in habit_list), default=0)
