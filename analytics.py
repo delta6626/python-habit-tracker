@@ -1,4 +1,6 @@
 from Habit import Habit
+from datetime import datetime, timedelta
+from constants import PERIODICITY_DAY_COUNT
 
 
 def get_all_habits(habits: list[Habit]) -> str:
@@ -44,5 +46,33 @@ def group_habits_based_on_periodicity(habit_list: list[Habit]) -> str:
     )
 
 
-def get_longest_streak(habit_list: list[Habit]) -> str:
-    pass
+def get_longest_streak_for_habit(habit: Habit):
+    periods = habit.get_periods_since_creation()
+
+    completions_list = [
+        int(
+            any(
+                (
+                    habit.created_at
+                    + timedelta(days=PERIODICITY_DAY_COUNT[habit.periodicity] * period)
+                )
+                <= completion
+                < (
+                    habit.created_at
+                    + timedelta(
+                        days=PERIODICITY_DAY_COUNT[habit.periodicity] * (period + 1)
+                    )
+                )
+                for completion in habit.completions
+            )
+        )
+        for period in range(periods)
+    ]
+
+    return max(
+        (
+            len(segment.replace("0", ""))
+            for segment in "".join(map(str, completions_list)).split("0")
+        ),
+        default=0,
+    )
