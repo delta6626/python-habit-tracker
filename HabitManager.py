@@ -59,7 +59,7 @@ class HabitManager:
 
     def initiate_view_longest_streak_overall(self):
         habit, streak = analytics.get_longest_streak_overall(self.habit_list)
-        print(f"\nThe habit '{habit.name}' has the longest streak.\n")
+        print(f"\nThe habit '{habit.name}' has the longest streak.")
         print(f"It has lasted for {streak} periods.\n")
 
     def initiate_add_new_habit(self) -> None:
