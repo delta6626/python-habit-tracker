@@ -6,7 +6,7 @@ import analytics
 import constants
 
 
-class HabitManager:
+class HabitServiceProvider:
     def __init__(self):
         self.database = HabitDatabase()
         self.habit_list = self.database.get_all_habits()

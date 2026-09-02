@@ -1,8 +1,8 @@
-from HabitManager import HabitManager
+from HabitServiceProvider import HabitServiceProvider
 from utilities import get_input_within_range
 import constants
 
-habit_manager = HabitManager()
+habit_service_provider = HabitServiceProvider()
 
 
 def main():
@@ -24,13 +24,13 @@ def main():
         )
 
         if chosen_option == constants.MENU_OPTIONS["add_habit"]:
-            habit_manager.initiate_add_new_habit()
+            habit_service_provider.initiate_add_new_habit()
         elif chosen_option == constants.MENU_OPTIONS["complete_habit"]:
-            habit_manager.initiate_check_off_habit()
+            habit_service_provider.initiate_check_off_habit()
         elif chosen_option == constants.MENU_OPTIONS["delete_habit"]:
-            habit_manager.initiate_delete_habit()
+            habit_service_provider.initiate_delete_habit()
         elif chosen_option == constants.MENU_OPTIONS["view_analytics"]:
-            habit_manager.initiate_view_analytics()
+            habit_service_provider.initiate_view_analytics()
         elif chosen_option == constants.MENU_OPTIONS["repeat_menu"]:
             print(constants.MENU_OPTIONS_TEXT)
         elif chosen_option == constants.MENU_OPTIONS["exit"]:
