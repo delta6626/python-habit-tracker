@@ -7,12 +7,11 @@ from Habit import Habit
 class HabitDatabase:
     def __init__(self):
         self.connection = sqlite3.connect("habit_database.db")
-        self.connection.execute("PRAGMA foreign_keys = ON")
-
         self.cursor = self.connection.cursor()
+
+        self.connection.execute("PRAGMA foreign_keys = ON")
         self.cursor.execute(constants.CREATE_HABITS_TABLE_SQL)
         self.cursor.execute(constants.CREATE_COMPLETIONS_TABLE_SQL)
-
         self.connection.commit()
 
     def get_all_habits(self) -> list[Habit]:
