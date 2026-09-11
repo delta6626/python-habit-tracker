@@ -41,7 +41,7 @@ class HabitServiceProvider:
         print("\nHere are your habits grouped by periodicity:\n")
         print(f"{analytics.group_habits_based_on_periodicity(self.habit_list)}\n")
 
-    def initiate_view_longest_streak_for_habit(self):
+    def initiate_view_longest_streak_for_habit(self) -> None:
         self.initiate_view_all_habits()
         sorted_habits = self.sort_habits_latest_first()
         habit_identifier = get_input_within_range(
@@ -57,7 +57,7 @@ class HabitServiceProvider:
             f"\nThe longest streak for '{chosen_habit.name}' is {analytics.get_longest_streak_for_habit(chosen_habit)}.\n"
         )
 
-    def initiate_view_longest_streak_overall(self):
+    def initiate_view_longest_streak_overall(self) -> None:
         habit, streak = analytics.get_longest_streak_overall(self.habit_list)
         print(f"\nThe habit '{habit.name}' has the longest streak.")
         print(f"It has lasted for {streak} periods.\n")
