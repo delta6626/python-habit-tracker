@@ -2,6 +2,7 @@ import sqlite3
 import constants
 from datetime import datetime
 from Habit import Habit
+from utils import is_demo_data_loaded, update_demo_data_status
 
 
 class HabitDatabase:
@@ -12,6 +13,12 @@ class HabitDatabase:
         self.connection.execute("PRAGMA foreign_keys = ON")
         self.cursor.execute(constants.CREATE_HABITS_TABLE_SQL)
         self.cursor.execute(constants.CREATE_COMPLETIONS_TABLE_SQL)
+
+        demo_data_loaded = is_demo_data_loaded()
+        if not demo_data_loaded:
+            # to do: insert demo data
+            update_demo_data_status(True)
+
         self.connection.commit()
 
     def get_all_habits(self) -> list[Habit]:
