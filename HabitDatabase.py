@@ -2,7 +2,7 @@ import sqlite3
 import constants
 from datetime import datetime
 from Habit import Habit
-from utils import is_demo_data_loaded, update_demo_data_status
+from utils import is_demo_data_loaded, update_demo_data_status, seed_demo_data
 
 
 class HabitDatabase:
@@ -16,7 +16,7 @@ class HabitDatabase:
 
         demo_data_loaded = is_demo_data_loaded()
         if not demo_data_loaded:
-            # to do: insert demo data
+            seed_demo_data(self.cursor)
             update_demo_data_status(True)
 
         self.connection.commit()
