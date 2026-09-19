@@ -18,11 +18,19 @@ class HabitServiceProvider:
         return sorted_habits
 
     def initiate_view_all_habits(self) -> None:
+        if not self.habit_list:
+            print("\nYou have no habits yet. Add one first.\n")
+            return
+
         sorted_habits = self.sort_habits_latest_first()
         print("\nHere is a list of all your habits (latest first): ")
         print(f"{analytics.get_all_habits(sorted_habits)}\n")
 
     def initiate_view_habit_details(self) -> None:
+        if not self.habit_list:
+            print("\nYou have no habits yet. Add one first.\n")
+            return
+
         self.initiate_view_all_habits()
         sorted_habits = self.sort_habits_latest_first()
         habit_identifier = get_input_within_range(
@@ -38,10 +46,18 @@ class HabitServiceProvider:
         print(f"{analytics.get_habit_details(chosen_habit)}\n")
 
     def initiate_view_habits_with_same_periodicity(self):
+        if not self.habit_list:
+            print("\nYou have no habits yet. Add one first.\n")
+            return
+
         print("\nHere are your habits grouped by periodicity:\n")
         print(f"{analytics.group_habits_based_on_periodicity(self.habit_list)}\n")
 
     def initiate_view_longest_streak_for_habit(self) -> None:
+        if not self.habit_list:
+            print("\nYou have no habits yet. Add one first.\n")
+            return
+
         self.initiate_view_all_habits()
         sorted_habits = self.sort_habits_latest_first()
         habit_identifier = get_input_within_range(
@@ -58,6 +74,10 @@ class HabitServiceProvider:
         )
 
     def initiate_view_longest_streak_overall(self) -> None:
+        if not self.habit_list:
+            print("\nYou have no habits yet. Add one first.\n")
+            return
+
         habit, streak = analytics.get_longest_streak_overall(self.habit_list)
         print(f"\nThe habit '{habit.name}' has the longest streak.")
         print(f"It has lasted for {streak} periods.\n")
@@ -81,6 +101,10 @@ class HabitServiceProvider:
         print("New habit added successfully.\n")
 
     def initiate_check_off_habit(self) -> None:
+        if not self.habit_list:
+            print("\nYou have no habits yet. Add one first.\n")
+            return
+
         self.initiate_view_all_habits()
 
         sorted_habits = self.sort_habits_latest_first()
@@ -102,6 +126,10 @@ class HabitServiceProvider:
         )
 
     def initiate_delete_habit(self) -> None:
+        if not self.habit_list:
+            print("\nYou have no habits yet. Add one first.\n")
+            return
+
         self.initiate_view_all_habits()
 
         sorted_habits = self.sort_habits_latest_first()
