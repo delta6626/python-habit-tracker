@@ -2,7 +2,7 @@ import sqlite3
 import constants
 from datetime import datetime
 from Habit import Habit
-from utils import is_demo_data_loaded, update_demo_data_status, seed_demo_data
+from utilities import is_demo_data_loaded, update_demo_data_status, seed_demo_data
 
 
 class HabitDatabase:
