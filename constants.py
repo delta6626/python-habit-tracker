@@ -57,6 +57,10 @@ Invalid input. Please enter a number.
 Periodicity = Literal["daily", "weekly"]
 PERIODICITY_DAY_COUNT: dict[Periodicity, int] = {"daily": 1, "weekly": 7}
 
+################# TEST DATA IDs #################
+
+RECORD_IDS = ["TDR1", "TDR2", "TDR3", "TDR4", "TDR5"]
+
 ################# DATABASE #################
 
 MAIN_TABLE_NAME = "habits"
@@ -113,4 +117,9 @@ VALUES (?, ?)
 DELETE_HABIT_SQL = f"""
 DELETE FROM {MAIN_TABLE_NAME}
 WHERE id = ?
+"""
+
+DELETE_DEMO_DATA_SQL = f"""
+DELETE FROM {MAIN_TABLE_NAME}
+WHERE ID IN ({', '.join(f"'{id}'" for id in RECORD_IDS)})
 """

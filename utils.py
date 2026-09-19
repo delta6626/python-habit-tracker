@@ -54,7 +54,7 @@ def build_demo_habits(now: datetime | None = None) -> list[Habit]:
     completions = [offset_time(d, 8, 0) for d in range(27, -1, -1)]
     habits.append(
         Habit(
-            "TDR1",
+            constants.RECORD_IDS[0],
             "Drink water",
             "Drink 2 liters of water everyday",
             "daily",
@@ -70,7 +70,7 @@ def build_demo_habits(now: datetime | None = None) -> list[Habit]:
     ]
     habits.append(
         Habit(
-            "TDR2",
+            constants.RECORD_IDS[1],
             "Daily run",
             "Run for 2 kilometers everyday ",
             "daily",
@@ -84,7 +84,7 @@ def build_demo_habits(now: datetime | None = None) -> list[Habit]:
     completions = [offset_time(d, 21, 0) for d in range(27, -1, -1) if d != 5]
     habits.append(
         Habit(
-            "TDR3",
+            constants.RECORD_IDS[2],
             "Daily meditation",
             "Meditate for 30 minutes everyday",
             "daily",
@@ -98,7 +98,7 @@ def build_demo_habits(now: datetime | None = None) -> list[Habit]:
     completions = [offset_time(d, 10, 0) for d in (28, 21, 14, 7)]
     habits.append(
         Habit(
-            "TDR4",
+            constants.RECORD_IDS[3],
             "Read a book",
             "Read any book for half an hour or more",
             "weekly",
@@ -112,7 +112,7 @@ def build_demo_habits(now: datetime | None = None) -> list[Habit]:
     completions = [offset_time(d, 18, 0) for d in (28, 14, 7)]
     habits.append(
         Habit(
-            "TDR5",
+            constants.RECORD_IDS[4],
             "Learn CS",
             "Learn a new CS concept every week",
             "weekly",
@@ -125,6 +125,11 @@ def build_demo_habits(now: datetime | None = None) -> list[Habit]:
 
 
 def seed_demo_data(cursor: Cursor, now: datetime | None = None) -> None:
+
+    cursor.execute(
+        constants.DELETE_DEMO_DATA_SQL
+    )  # Delete demo data to ensure a clean start
+
     for habit in build_demo_habits(now):
         cursor.execute(
             constants.INSERT_HABIT_SQL,
