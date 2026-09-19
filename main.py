@@ -1,5 +1,5 @@
 from HabitServiceProvider import HabitServiceProvider
-from utilities import get_input_within_range
+from input_utilities import get_input_within_range
 import constants
 
 habit_service_provider = HabitServiceProvider()

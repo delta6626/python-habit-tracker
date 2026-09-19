@@ -1,7 +1,11 @@
 from HabitDatabase import HabitDatabase
 from datetime import datetime
 from Habit import Habit
-from utilities import get_non_empty_input, get_periodicity_input, get_input_within_range
+from input_utilities import (
+    get_non_empty_input,
+    get_periodicity_input,
+    get_input_within_range,
+)
 import analytics
 import constants
 
