@@ -6,7 +6,8 @@ from utilities import build_demo_data
 
 class TestAnalytics(unittest.TestCase):
     def setUp(self):
-        self.habits = build_demo_data()
+        self.now = datetime(2026, 9, 20, 12, 0, 0)
+        self.habits = build_demo_data(self.now)
 
     def test_get_all_habits_returns_all_names(self):
         all_habit_names = analytics.get_all_habits(self.habits)
@@ -45,4 +46,4 @@ class TestAnalytics(unittest.TestCase):
         chosen_habit = self.habits[1]
         streak = analytics.get_longest_streak_for_habit(chosen_habit)
 
-        self.assertEqual(streak, 14)
+        self.assertEqual(streak, 14, "Test case failed: ")
