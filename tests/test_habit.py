@@ -28,11 +28,33 @@ class TestHabit(unittest.TestCase):
 
     def test_check_off_habit_appends_completion(self):
         chosen_habit = self.habits[0]
+        initial_count = len(chosen_habit.completions)
         chosen_habit.check_off_habit(datetime.now())
         chosen_habit.check_off_habit(datetime.now() + timedelta(days=1))
 
         self.assertEqual(
             len(chosen_habit.completions),
-            30,
+            initial_count + 2,
             "Test case failed: Habit completions are not being appended.",
         )
+
+    def test_daily_habit_period_number_same_day(self):
+        chosen_habit = self.habits[0]
+
+        same_day_offsets = [
+            timedelta(milliseconds=1),
+            timedelta(seconds=1),
+            timedelta(minutes=1),
+            timedelta(hours=1),
+        ]
+
+        for offset in same_day_offsets:
+            period = chosen_habit.get_current_period_number(
+                chosen_habit.created_at + offset
+            )
+
+            self.assertEqual(
+                period,
+                1,
+                "Test case failed: Daily habit period number changed within the same day.",
+            )
