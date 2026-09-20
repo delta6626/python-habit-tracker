@@ -16,7 +16,7 @@ class HabitDatabase:
 
         demo_data_loaded = is_demo_data_loaded()
         if not demo_data_loaded:
-            seed_demo_data(self.cursor)
+            seed_demo_data(self.cursor, datetime(2026, 9, 20, 12, 0, 0))
             update_demo_data_status(True)
 
         self.connection.commit()
