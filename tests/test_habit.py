@@ -105,5 +105,32 @@ class TestHabit(unittest.TestCase):
         self.assertEqual(
             period_number,
             1,
-            "Test case failed: Weekly habit period number changed within the same week.",
+            "Test case failed: Weekly habit current period number changed within the same week.",
+        )
+
+    def test_weekly_habit_period_number_next_week(self):
+        chosen_habit = self.habits[3]
+
+        period_number = chosen_habit.get_current_period_number(
+            chosen_habit.created_at + timedelta(days=7)
+        )
+
+        self.assertEqual(
+            period_number,
+            2,
+            "Test case failed: Weekly habit current period number is incorrect in the next week.",
+        )
+
+    def test_weekly_habit_period_number_many_weeks_later(self):
+        weeks = 3
+        chosen_habit = self.habits[3]
+
+        period_number = chosen_habit.get_current_period_number(
+            chosen_habit.created_at + timedelta(days=weeks * 7)
+        )
+
+        self.assertEqual(
+            period_number,
+            weeks + 1,
+            "Test case failed: Weekly habit current period number is incorrect after multiple weeks.",
         )
