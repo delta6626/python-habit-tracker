@@ -83,3 +83,27 @@ class TestHabit(unittest.TestCase):
             d + 1,
             "Test case failed: Daily habit current period number is incorrect several days later.",
         )
+
+    def test_weekly_habit_period_number_same_week(self):
+        chosen_habit = self.habits[3]
+
+        same_week_offsets = [
+            timedelta(milliseconds=1),
+            timedelta(seconds=1),
+            timedelta(minutes=1),
+            timedelta(hours=1),
+            timedelta(days=1),
+            timedelta(days=3),
+            timedelta(days=6),
+        ]
+
+        for offset in same_week_offsets:
+            period_number = chosen_habit.get_current_period_number(
+                chosen_habit.created_at + offset
+            )
+
+        self.assertEqual(
+            period_number,
+            1,
+            "Test case failed: Weekly habit period number changed within the same week.",
+        )
