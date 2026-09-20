@@ -39,7 +39,7 @@ def update_demo_data_status(status: bool) -> None:
             json.dump(config_data, file)
 
 
-def build_demo_habits(now: datetime | None = None) -> list[Habit]:
+def build_demo_data(now: datetime | None = None) -> list[Habit]:
     now = now or datetime.now()
 
     def offset_time(days_ago: int, hour: int, minute: int) -> datetime:
@@ -130,7 +130,7 @@ def seed_demo_data(cursor: Cursor, now: datetime | None = None) -> None:
         constants.DELETE_DEMO_DATA_SQL
     )  # Delete demo data to ensure a clean start
 
-    for habit in build_demo_habits(now):
+    for habit in build_demo_data(now):
         cursor.execute(
             constants.INSERT_HABIT_SQL,
             (
