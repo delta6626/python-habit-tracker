@@ -1,7 +1,3 @@
-"""
-main.py - The file to run for starting the application.
-"""
-
 from HabitServiceProvider import HabitServiceProvider
 from input_utilities import get_input_within_range
 import constants

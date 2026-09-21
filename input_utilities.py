@@ -1,7 +1,3 @@
-"""
-input_utilities.py - A collection of utility functions for validating user input.
-"""
-
 from Habit import Periodicity
 
 
