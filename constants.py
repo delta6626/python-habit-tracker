@@ -1,3 +1,7 @@
+"""
+Constants used throughout the application.
+"""
+
 from typing import Literal
 
 ################# USER INTERACTION #################
