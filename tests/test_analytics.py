@@ -13,7 +13,11 @@ class TestAnalytics(unittest.TestCase):
         all_habit_names = analytics.get_all_habits(self.habits)
 
         for habit in self.habits:
-            self.assertIn(habit.name, all_habit_names, "Test case failed:")
+            self.assertIn(
+                habit.name,
+                all_habit_names,
+                "Test case failed: Not all habit names were returned.",
+            )
 
     def test_get_habit_details_returns_all_details(self):
         chosen_habit = self.habits[0]
@@ -27,40 +31,70 @@ class TestAnalytics(unittest.TestCase):
         ]
 
         for attribute in attributes_to_check:
-            self.assertIn(attribute, habit_details.lower(), "Test case failed:")
+            self.assertIn(
+                attribute,
+                habit_details.lower(),
+                "Test case failed: Not all habit details were returned.",
+            )
 
     def test_group_habits_by_periodicity_returns_all_periodicities(self):
         grouped_habits = analytics.group_habits_based_on_periodicity(self.habits)
         periodicities = ["daily", "weekly"]
 
         for periodicity in periodicities:
-            self.assertIn(periodicity, grouped_habits.lower(), "Test case failed: ")
+            self.assertIn(
+                periodicity,
+                grouped_habits.lower(),
+                "Test case failed: Not all habit periodicities were included in the grouping.",
+            )
 
     def test_get_longest_streak_for_daily_habit_with_perfect_streak(self):
         chosen_habit = self.habits[0]
         streak = analytics.get_longest_streak_for_habit(chosen_habit, self.now)
 
-        self.assertEqual(streak, 28, "Test case failed: ")
+        self.assertEqual(
+            streak,
+            28,
+            "Test case failed: Longest streak for this specific case is incorrect.",
+        )
 
     def test_get_longest_streak_for_daily_habit_with_broken_streak(self):
         chosen_habit = self.habits[1]
         streak = analytics.get_longest_streak_for_habit(chosen_habit, self.now)
 
-        self.assertEqual(streak, 14, "Test case failed: ")
+        self.assertEqual(
+            streak,
+            14,
+            "Test case failed: Longest streak for this specific case is incorrect.",
+        )
 
     def test_get_longest_streak_for_weekly_habit_with_perfect_streak(self):
         chosen_habit = self.habits[3]
         streak = analytics.get_longest_streak_for_habit(chosen_habit, self.now)
 
-        self.assertEqual(streak, 4, "Test case failed:")
+        self.assertEqual(
+            streak,
+            4,
+            "Test case failed: Longest streak for this specific case is incorrect.",
+        )
 
     def test_get_longest_streak_for_weekly_habit_with_broken_streak(self):
         chosen_habit = self.habits[4]
         streak = analytics.get_longest_streak_for_habit(chosen_habit, self.now)
 
-        self.assertEqual(streak, 2, "Test case failed:")
+        self.assertEqual(
+            streak,
+            2,
+            "Test case failed: Longest streak for this specific case is incorrect.",
+        )
 
-    def test_longest_streak_overall_returns_max(self):
+    def test_get_longest_streak_overall(self):
         habit, streak = analytics.get_longest_streak_overall(self.habits)
-        self.assertEqual(habit.name, "Drink water", "Test case failed: ")
-        self.assertEqual(streak, 28, "Test case failed:")
+        self.assertEqual(
+            habit.name,
+            "Drink water",
+            "Test case failed: Habit with the longest overall streak is incorrect.",
+        )
+        self.assertEqual(
+            streak, 28, "Test case failed: Longest overall streak is incorrect."
+        )
