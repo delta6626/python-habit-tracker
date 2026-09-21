@@ -143,6 +143,10 @@ class HabitServiceProvider:
         print("New habit added successfully.\n")
 
     def initiate_check_off_habit(self) -> None:
+        """
+        Prompt the user to select a habit to record its completion.
+        """
+
         if not self.habit_list:
             print("\nYou have no habits yet. Add one first.\n")
             return
@@ -168,6 +172,10 @@ class HabitServiceProvider:
         )
 
     def initiate_delete_habit(self) -> None:
+        """
+        Prompt the user to select a habit and delete it from the database as well as the in-memory list.
+        """
+
         if not self.habit_list:
             print("\nYou have no habits yet. Add one first.\n")
             return
@@ -192,6 +200,10 @@ class HabitServiceProvider:
         )
 
     def initiate_view_analytics(self) -> None:
+        """
+        Display the analytics menu and handle the user's selection.
+        """
+
         print("\nAvailable analytics: ")
         print(constants.ANALYTICS_OPTIONS_TEXT)
 
