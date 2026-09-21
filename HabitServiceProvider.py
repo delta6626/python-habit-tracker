@@ -11,17 +11,34 @@ import constants
 
 
 class HabitServiceProvider:
+    """
+    Coordinates habit-related operations between the user interface,
+    habit data, database, and analytics modules.
+    """
+
     def __init__(self):
+        """
+        Initialize the database connection and load all stored habits.
+        """
+
         self.database = HabitDatabase()
         self.habit_list = self.database.get_all_habits()
 
     def sort_habits_latest_first(self) -> list[Habit]:
+        """
+        Return the habits sorted by creation date, with the newest one appearing first (reverse chronological order).
+        """
+
         sorted_habits = sorted(
             self.habit_list, key=lambda habit: habit.created_at, reverse=True
         )
         return sorted_habits
 
     def initiate_view_all_habits(self) -> None:
+        """
+        Display all habits in reverse chronological order.
+        """
+
         if not self.habit_list:
             print("\nYou have no habits yet. Add one first.\n")
             return
@@ -31,6 +48,10 @@ class HabitServiceProvider:
         print(f"{analytics.get_all_habits(sorted_habits)}\n")
 
     def initiate_view_habit_details(self) -> None:
+        """
+        Prompt the user to select a habit and display its details.
+        """
+
         if not self.habit_list:
             print("\nYou have no habits yet. Add one first.\n")
             return
@@ -50,6 +71,10 @@ class HabitServiceProvider:
         print(f"{analytics.get_habit_details(chosen_habit)}\n")
 
     def initiate_view_habits_with_same_periodicity(self):
+        """
+        Group habits based on their periodicity and display them.
+        """
+
         if not self.habit_list:
             print("\nYou have no habits yet. Add one first.\n")
             return
@@ -58,6 +83,10 @@ class HabitServiceProvider:
         print(f"{analytics.group_habits_based_on_periodicity(self.habit_list)}\n")
 
     def initiate_view_longest_streak_for_habit(self) -> None:
+        """
+        Prompt the user to select a habit and display its longest streak.
+        """
+
         if not self.habit_list:
             print("\nYou have no habits yet. Add one first.\n")
             return
@@ -78,6 +107,10 @@ class HabitServiceProvider:
         )
 
     def initiate_view_longest_streak_overall(self) -> None:
+        """
+        Display the habit with the longest streak overall.
+        """
+
         if not self.habit_list:
             print("\nYou have no habits yet. Add one first.\n")
             return
@@ -87,6 +120,11 @@ class HabitServiceProvider:
         print(f"It has lasted for {streak} periods.\n")
 
     def initiate_add_new_habit(self) -> None:
+        """
+        Prompt the user for the required habit information and add the new habit
+        to the database and in-memory habit list.
+        """
+
         habit_name = get_non_empty_input(
             "Habit name", "\nEnter a name for your new habit: "
         )
