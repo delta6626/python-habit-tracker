@@ -1,3 +1,7 @@
+"""
+main.py - The file to run for starting the application.
+"""
+
 from HabitServiceProvider import HabitServiceProvider
 from input_utilities import get_input_within_range
 import constants
@@ -7,7 +11,11 @@ habit_service_provider = HabitServiceProvider()
 
 def main():
     """
-    The main function serves as the entrypoint to the application.
+    This function serves as the entrypoint to the application.
+
+    It displays the main menu, collects the user's selection, and
+    delegates the selected habit-related action to HabitServiceProvider.
+    The menu continues to be displayed until the user chooses to exit.
     """
 
     print("Welcome to the habit tracker application")
@@ -34,7 +42,7 @@ def main():
         elif chosen_option == constants.MENU_OPTIONS["repeat_menu"]:
             print(constants.MENU_OPTIONS_TEXT)
         elif chosen_option == constants.MENU_OPTIONS["exit"]:
-            print("Goodbye.")
+            print("\nHave a good day.\n")
             break
         else:
             print(constants.INVALID_INPUT_TEXT)
