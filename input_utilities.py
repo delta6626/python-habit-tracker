@@ -1,7 +1,18 @@
+"""
+input_utilities.py - A collection of utility functions for validating user input.
+"""
+
 from Habit import Periodicity
 
 
 def get_non_empty_input(value_name: str, prompt: str) -> str:
+    """
+    Prompt the user for a non-empty text value.
+
+    Repeats the prompt until the user provides a value containing
+    at least one non-whitespace character.
+    """
+
     while True:
         input_value = input(prompt).strip()
 
@@ -12,6 +23,13 @@ def get_non_empty_input(value_name: str, prompt: str) -> str:
 
 
 def get_periodicity_input(prompt: str) -> Periodicity:
+    """
+    Prompt the user for a valid habit periodicity.
+
+    Repeats the prompt until the user enters a valid periodicity.
+    The input is converted to lowercase before validation.
+    """
+
     while True:
         input_value = input(prompt).strip().lower()
 
@@ -28,6 +46,13 @@ def get_input_within_range(
     on_invalid_range: str,
     on_value_error: str,
 ) -> int:
+    """
+    Prompt the user for an integer within a specified range.
+
+    Repeats the prompt when the input is not an integer or falls
+    outside the specified range.
+    """
+
     while True:
         try:
             input_value = int(input(prompt))
