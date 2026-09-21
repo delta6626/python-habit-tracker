@@ -11,9 +11,9 @@ habit_service_provider = HabitServiceProvider()
 
 def main():
     """
-    This function serves as the entrypoint to the application.
+    Entrypoint of the application.
 
-    It displays the main menu, collects the user's selection, and
+    Displays the main menu, collects the user's selection, and
     delegates the selected habit-related action to HabitServiceProvider.
     The menu continues to be displayed until the user chooses to exit.
     """
