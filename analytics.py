@@ -39,7 +39,7 @@ def get_habit_details(habit: Habit) -> str:
 
 def group_habits_based_on_periodicity(habit_list: list[Habit]) -> str:
     """
-    Return all habits by grouping them based on their periodicity.
+    Return all habits grouped based on their periodicity.
     """
 
     periodicities = ("daily", "weekly")
@@ -67,7 +67,7 @@ def get_longest_streak_for_habit(
 
     The habit's periodicity determines the period length. Each period is
     marked as completed if there is at least one completion record that
-    occured during said period. A missed period (period with no completions)
+    occurred during said period. A missed period (period with no completions)
     breaks the streak, and the longest consecutive sequence of completed
     periods is returned.
     """
