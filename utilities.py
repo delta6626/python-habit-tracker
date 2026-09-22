@@ -8,6 +8,13 @@ config_file_name = "config.json"
 
 
 def is_demo_data_loaded() -> bool:
+    """
+    Check the configuration file to see if the demo/testing data has been inserted into the database.
+
+    Returns:
+        A boolean indicating the current status.
+    """
+
     try:
         with open(config_file_name, "r") as file:
             config_data = json.load(file)
@@ -23,6 +30,14 @@ def is_demo_data_loaded() -> bool:
 
 
 def update_demo_data_status(status: bool) -> None:
+    """
+    Update the configuration file with the specified status for the demo data.
+    If the configuration file does not exist, create it and write the status.
+
+    Args:
+        status: The status to set for the demo data.
+    """
+
     try:
         with open(config_file_name, "r") as file:
             config_data = json.load(file)
@@ -40,9 +55,32 @@ def update_demo_data_status(status: bool) -> None:
 
 
 def build_demo_data(now: datetime | None = None) -> list[Habit]:
+    """
+    Create a list of predefined habits which will serve as the demo/testing data.
+
+    Args:
+        now: The datetime to use for the reference point when creating the demo data.
+
+    Returns:
+        A list of predefined habits.
+    """
+
     now = now or datetime.now()
 
     def offset_time(days_ago: int, hour: int, minute: int) -> datetime:
+        """
+        Create a datetime by offsetting the reference time by a number of days
+        and setting the specified hour and minute.
+
+        Args:
+            days_ago: The number of days to subtract from the reference datetime.
+            hour: The hour to set.
+            minute: The minute to set.
+
+        Returns:
+            The resulting datetime.
+        """
+
         return (now - timedelta(days=days_ago)).replace(
             hour=hour, minute=minute, second=0, microsecond=0
         )
@@ -125,6 +163,13 @@ def build_demo_data(now: datetime | None = None) -> list[Habit]:
 
 
 def seed_demo_data(cursor: Cursor, now: datetime | None = None) -> None:
+    """
+    Build the demo data and insert it into the database.
+
+    Args:
+        cursor: The database cursor used to insert the demo data.
+        now: The datetime to use as the reference point when creating the demo data.
+    """
 
     cursor.execute(
         constants.DELETE_DEMO_DATA_SQL
