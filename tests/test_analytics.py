@@ -5,11 +5,26 @@ from utilities import build_demo_data
 
 
 class TestAnalytics(unittest.TestCase):
+    """
+    Unittest test class for testing the analytical functions.
+    """
+
     def setUp(self):
+        """
+        Load the demo/testing data used by the test cases.
+
+        All habits used to test the analytical functions are taken from
+        the demo data.
+        """
+
         self.now = datetime(2026, 9, 20, 12, 0, 0)
         self.habits = build_demo_data(self.now)
 
     def test_get_all_habits_returns_all_names(self):
+        """
+        Check whether all habit names are included in the returned string.
+        """
+
         all_habit_names = analytics.get_all_habits(self.habits)
 
         for habit in self.habits:
@@ -20,7 +35,11 @@ class TestAnalytics(unittest.TestCase):
             )
 
     def test_get_habit_details_returns_all_details(self):
-        chosen_habit = self.habits[0]
+        """
+        Check whether all relevant habit details are included in the returned string.
+        """
+
+        chosen_habit = self.habits[0]  # Randomly chosen from the list
         habit_details = analytics.get_habit_details(chosen_habit)
         attributes_to_check = [
             "name",
@@ -38,6 +57,10 @@ class TestAnalytics(unittest.TestCase):
             )
 
     def test_group_habits_by_periodicity_returns_all_periodicities(self):
+        """
+        Check whether the habits are grouped by their periodicity.
+        """
+
         grouped_habits = analytics.group_habits_based_on_periodicity(self.habits)
         periodicities = ["daily", "weekly"]
 
@@ -49,6 +72,12 @@ class TestAnalytics(unittest.TestCase):
             )
 
     def test_get_longest_streak_for_daily_habit_with_perfect_streak(self):
+        """
+        Check whether the calculated longest streak matches the expected value.
+
+        The habit chosen for this test has daily periodicity and a 28-day streak.
+        """
+
         chosen_habit = self.habits[0]
         streak = analytics.get_longest_streak_for_habit(chosen_habit, self.now)
 
@@ -59,6 +88,13 @@ class TestAnalytics(unittest.TestCase):
         )
 
     def test_get_longest_streak_for_daily_habit_with_broken_streak(self):
+        """
+        Check whether the calculated longest streak matches the expected value.
+
+        The habit chosen for this test has daily periodicity and a broken streak
+        with a maximum streak of 14 days.
+        """
+
         chosen_habit = self.habits[1]
         streak = analytics.get_longest_streak_for_habit(chosen_habit, self.now)
 
@@ -69,6 +105,13 @@ class TestAnalytics(unittest.TestCase):
         )
 
     def test_get_longest_streak_for_weekly_habit_with_perfect_streak(self):
+        """
+        Check whether the calculated longest streak matches the expected value.
+
+        The habit chosen for this test has weekly periodicity and a four-week
+        streak.
+        """
+
         chosen_habit = self.habits[3]
         streak = analytics.get_longest_streak_for_habit(chosen_habit, self.now)
 
@@ -79,6 +122,13 @@ class TestAnalytics(unittest.TestCase):
         )
 
     def test_get_longest_streak_for_weekly_habit_with_broken_streak(self):
+        """
+        Check whether the calculated longest streak matches the expected value.
+
+        The habit chosen for this test has weekly periodicity and a broken streak
+        with a maximum streak of two weeks.
+        """
+
         chosen_habit = self.habits[4]
         streak = analytics.get_longest_streak_for_habit(chosen_habit, self.now)
 
@@ -89,6 +139,11 @@ class TestAnalytics(unittest.TestCase):
         )
 
     def test_get_longest_streak_overall(self):
+        """
+        Check whether the habit with the longest overall streak and its
+        streak length are returned correctly.
+        """
+
         habit, streak = analytics.get_longest_streak_overall(self.habits)
         self.assertEqual(
             habit.name,
