@@ -26,7 +26,10 @@ class HabitServiceProvider:
 
     def sort_habits_latest_first(self) -> list[Habit]:
         """
-        Return the habits sorted by creation date, with the newest one appearing first (reverse chronological order).
+        Sort habits by creation date, with the newest one appearing first.
+
+        Returns:
+            A list of habits ordered from newest to oldest.
         """
 
         sorted_habits = sorted(
