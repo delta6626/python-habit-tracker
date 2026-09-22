@@ -6,10 +6,22 @@ from constants import RECORD_IDS
 
 
 class TestHabit(unittest.TestCase):
+    """
+    Unittest test class for testing the Habit class.
+    """
+
     def setUp(self):
+        """
+        Load the demo/testing data used by the test cases.
+        """
+
         self.habits = build_demo_data()
 
     def test_habit_id_is_automatically_generated(self):
+        """
+        Check whether a habit ID is automatically generated when none is provided.
+        """
+
         habit = Habit(
             None, "Test habit", "Test habit description", "daily", datetime.now(), []
         )
@@ -19,6 +31,10 @@ class TestHabit(unittest.TestCase):
         )
 
     def test_provided_habit_id_is_preserved(self):
+        """
+        Check whether a provided habit ID is preserved when creating a habit.
+        """
+
         chosen_habit = self.habits[0]
         self.assertEqual(
             chosen_habit.id,
@@ -27,6 +43,11 @@ class TestHabit(unittest.TestCase):
         )
 
     def test_check_off_habit_appends_completion(self):
+        """
+        Check whether checking off a habit appends the completion timestamp
+        to its 'completions' list.
+        """
+
         chosen_habit = self.habits[0]
         initial_count = len(chosen_habit.completions)
         chosen_habit.check_off_habit(datetime.now())
@@ -39,6 +60,11 @@ class TestHabit(unittest.TestCase):
         )
 
     def test_daily_habit_period_number_same_day(self):
+        """
+        Check whether a daily habit remains in the first period when the
+        datetime used to check the habit is still within its creation day.
+        """
+
         chosen_habit = self.habits[0]
 
         same_day_offsets = [
@@ -56,10 +82,15 @@ class TestHabit(unittest.TestCase):
             self.assertEqual(
                 period,
                 1,
-                "Test case failed: Daily habit current period number changed within the same day.",
+                "Test case failed: Habit period number changed within the same day of its creation.",
             )
 
     def test_daily_habit_period_number_next_day(self):
+        """
+        Check whether a daily habit moves to the second period when the
+        datetime used to check the habit is one day after its creation date.
+        """
+
         chosen_habit = self.habits[0]
         next_day_period_number = chosen_habit.get_current_period_number(
             chosen_habit.created_at + timedelta(days=1)
@@ -68,23 +99,35 @@ class TestHabit(unittest.TestCase):
         self.assertEqual(
             next_day_period_number,
             2,
-            "Test case failed: Daily habit current period number is incorrect on the next day.",
+            "Test case failed: Habit period number is incorrect on the day after its creation.",
         )
 
     def test_daily_habit_period_number_many_days_later(self):
+        """
+        Check whether the period number for a daily habit increases correctly
+        when the datetime used to check the habit is several days after its
+        creation date.
+        """
+
         d = 7
         chosen_habit = self.habits[0]
-        next_day_period_number = chosen_habit.get_current_period_number(
+        period_number = chosen_habit.get_current_period_number(
             chosen_habit.created_at + timedelta(days=d)
         )
 
         self.assertEqual(
-            next_day_period_number,
+            period_number,
             d + 1,
-            "Test case failed: Daily habit current period number is incorrect several days later.",
+            "Test case failed: Habit period number is incorrect several days after its creation.",
         )
 
     def test_weekly_habit_period_number_same_week(self):
+        """
+        Check whether a weekly habit remains in the first period when the
+        datetime used to check the habit is within the first week of its
+        creation.
+        """
+
         chosen_habit = self.habits[3]
 
         same_week_offsets = [
@@ -105,10 +148,15 @@ class TestHabit(unittest.TestCase):
         self.assertEqual(
             period_number,
             1,
-            "Test case failed: Weekly habit current period number changed within the same week.",
+            "Test case failed: Habit period number changed within the first week of its creation.",
         )
 
     def test_weekly_habit_period_number_next_week(self):
+        """
+        Check whether a weekly habit moves to the second period when the
+        datetime used to check the habit is seven days after its creation date.
+        """
+
         chosen_habit = self.habits[3]
 
         period_number = chosen_habit.get_current_period_number(
@@ -118,10 +166,16 @@ class TestHabit(unittest.TestCase):
         self.assertEqual(
             period_number,
             2,
-            "Test case failed: Weekly habit current period number is incorrect in the next week.",
+            "Test case failed: Habit period number is incorrect in the week after its creation.",
         )
 
     def test_weekly_habit_period_number_many_weeks_later(self):
+        """
+        Check whether the period number for a weekly habit increases correctly
+        when the datetime used to check the habit is several weeks after its
+        creation date.
+        """
+
         weeks = 3
         chosen_habit = self.habits[3]
 
@@ -132,5 +186,5 @@ class TestHabit(unittest.TestCase):
         self.assertEqual(
             period_number,
             weeks + 1,
-            "Test case failed: Weekly habit current period number is incorrect after multiple weeks.",
+            "Test case failed: Habit period number is incorrect several weeks after its creation.",
         )
