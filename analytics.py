@@ -6,6 +6,12 @@ from constants import PERIODICITY_DAY_COUNT
 def get_all_habits(habits: list[Habit]) -> str:
     """
     Return a numbered list containing the names of all habits.
+
+    Args:
+        habits: The list of habits to display.
+
+    Returns:
+        A numbered list containing the names of all habits.
     """
 
     return "\n".join(
@@ -17,6 +23,12 @@ def get_habit_details(habit: Habit) -> str:
     """
     Return the details of a habit, including all of its completion
     records, in a readable format.
+
+    Args:
+        habit: The habit whose details should be displayed.
+
+    Returns:
+        A formatted string containing the habit's details.
     """
 
     completion_times = (
@@ -40,6 +52,12 @@ def get_habit_details(habit: Habit) -> str:
 def group_habits_based_on_periodicity(habit_list: list[Habit]) -> str:
     """
     Return all habits grouped based on their periodicity.
+
+    Args:
+        habit_list: The list of habits to group.
+
+    Returns:
+        A formatted string containing the habits grouped by periodicity.
     """
 
     periodicities = ("daily", "weekly")
@@ -67,9 +85,16 @@ def get_longest_streak_for_habit(
 
     The habit's periodicity determines the period length. Each period is
     marked as completed if there is at least one completion record that
-    occurred during said period. A missed period (period with no completions)
+    occurred during that period. A missed period (period with no completions)
     breaks the streak, and the longest consecutive sequence of completed
     periods is returned.
+
+    Args:
+        habit: The habit for which the longest streak should be calculated.
+        datetime_of_check: The date and time used as the reference point.
+
+    Returns:
+        The length of the longest consecutive completion streak.
     """
 
     now = datetime_of_check or datetime.now()
@@ -111,6 +136,12 @@ def get_longest_streak_overall(habit_list: list[Habit]) -> tuple[Habit | None, i
     Uses the get_longest_streak_for_habit function to find the longest
     streak for each habit. The habit with the longest streak overall
     is then identified and returned together with its streak length.
+
+    Args:
+        habit_list: The list of habits to evaluate.
+
+    Returns:
+        A tuple containing the habit with the longest streak and its streak length.
     """
 
     return max(
