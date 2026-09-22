@@ -33,6 +33,9 @@ class HabitDatabase:
     def get_all_habits(self) -> list[Habit]:
         """
         Retrieve all stored habits and their completion records from the database.
+
+        Returns:
+            A list of Habit objects containing their stored completion records.
         """
 
         self.cursor.execute(constants.GET_ALL_HABITS_SQL)
@@ -65,6 +68,9 @@ class HabitDatabase:
     def add_habit(self, habit: Habit) -> None:
         """
         Add a new habit to the database.
+
+        Args:
+            habit: The Habit object to be stored in the database.
         """
 
         self.cursor.execute(
@@ -82,6 +88,10 @@ class HabitDatabase:
     def check_off_habit(self, habit_id: str, check_off_datetime: datetime) -> None:
         """
         Record a completion for the specified habit.
+
+        Args:
+            habit_id: The id of the habit being checked off.
+            check_off_datetime: The date and time at which the habit was checked off.
         """
 
         self.cursor.execute(
@@ -92,6 +102,9 @@ class HabitDatabase:
     def delete_habit(self, habit_id: str) -> None:
         """
         Delete the specified habit. Any associated completion records are also deleted.
+
+        Args:
+            habit_id: The id of the habit to be deleted.
         """
 
         self.cursor.execute(constants.DELETE_HABIT_SQL, (habit_id,))
