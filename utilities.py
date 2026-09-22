@@ -101,7 +101,7 @@ def build_demo_data(now: datetime | None = None) -> list[Habit]:
         )
     )
 
-    # 2. Daily habit with a broken streak. 3 days gap. Day 11, 12 and 13.
+    # 2. Daily habit with a broken streak. 3 days gap.
     created = offset_time(28, 7, 30)
     completions = [
         offset_time(d, 7, 30) for d in range(27, -1, -1) if not (11 <= d <= 13)
