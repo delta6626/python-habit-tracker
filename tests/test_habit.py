@@ -145,11 +145,11 @@ class TestHabit(unittest.TestCase):
                 chosen_habit.created_at + offset
             )
 
-        self.assertEqual(
-            period_number,
-            1,
-            "Test case failed: Habit period number changed within the first week of its creation.",
-        )
+            self.assertEqual(
+                period_number,
+                1,
+                "Test case failed: Habit period number changed within the first week of its creation.",
+            )
 
     def test_weekly_habit_period_number_next_week(self):
         """
